@@ -15,20 +15,18 @@ jobs:
 
       - name: Print release info
         run: |
-          echo "Release created: ${{ github.event.release.tag_name }}"
-          echo "Release name: ${{ github.event.release.name }}"
-          echo "Release body: ${{ github.event.release.body }}"
+          echo "Release tag: ${{ github.event.release.tag_name }}"
+          echo "Release branch: ${{ github.event.release.target_commitish }}"
 
-      - name: Update package version
+      - name: Update package.json version
         run: |
-          VERSION=${GITHUB_REF_NAME:-${{ github.event.release.tag_name }}}
+          VERSION=${{ github.event.release.tag_name }}
           echo "Setting package.json version to $VERSION"
           npm version $VERSION --no-git-tag-version
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add package.json package-lock.json
           git commit -m "chore: bump version to $VERSION [skip ci]"
-          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} main
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} ${{ github.event.release.target_commitish }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
