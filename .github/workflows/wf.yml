@@ -1,6 +1,9 @@
 name: On Release Created
 
-# Trigger the workflow on new releases
+permissions:
+  contents: write   # allow pushing to the repo
+  id-token: write   # optional, only needed for OIDC
+
 on:
   release:
     types: [created]
