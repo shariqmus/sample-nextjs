@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///Users/SMustaquim/Personal/development/sample-nextjs/src/rendering/components/Header.tsx"],"sourcesContent":["interface HeaderProps {\n  title: string;\n}\n\nexport default function Header({ title }: HeaderProps) {\n  return (\n    <header>\n      <h2>{title}</h2>\n      <hr />\n    </header>\n  );\n}\n"],"names":[],"mappings":";;;;;;AAIe,SAAS,OAAO,EAAE,KAAK,EAAe;IACnD,qBACE,qKAAC;;0BACC,qKAAC;0BAAI;;;;;;0BACL,qKAAC;;;;;;;;;;;AAGP","debugId":null}},
+    {"offset": {"line": 42, "column": 0}, "map": {"version":3,"sources":["file:///Users/SMustaquim/Personal/development/sample-nextjs/src/pages/index.tsx"],"sourcesContent":["import Header from '../rendering/components/Header';\n\nexport default function Home() {\n  return (\n    <div>\n      <Header title=\"Welcome to My Next.js App\" />\n      <main>\n        <h1>Hello from src/rendering!</h1>\n        <p>This is your home page.</p>\n      </main>\n    </div>\n  );\n}\n"],"names":[],"mappings":";;;;;AAAA;;;AAEe,SAAS;IACtB,qBACE,qKAAC;;0BACC,qKAAC,6IAAM;gBAAC,OAAM;;;;;;0BACd,qKAAC;;kCACC,qKAAC;kCAAG;;;;;;kCACJ,qKAAC;kCAAE;;;;;;;;;;;;;;;;;;AAIX","debugId":null}}]
+}
