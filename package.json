@@ -1,6 +1,6 @@
 {
   "name": "my-nextjs-app",
-  "version": "2.1.5",
+  "version": "3.3.3",
   "private": true,
   "scripts": {
     "dev": "next dev",
