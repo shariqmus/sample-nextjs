@@ -3,6 +3,7 @@ name: On Release Created
 permissions:
   contents: write   # allow pushing to the repo
   id-token: write   # optional, only needed for OIDC
+  pull-requests: write  # allow creating PRs
 
 on:
   release:
@@ -33,3 +34,18 @@ jobs:
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} HEAD:${{ github.event.release.target_commitish }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create pull request to develop
+        if: ${{ github.event.release.target_commitish != 'develop' }}
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: ${{ github.event.release.target_commitish }}
+          destination_branch: develop
+          pr_title: Merge ${{ github.event.release.target_commitish }} into develop - version ${{ github.event.release.tag_name }}
+          pr_body: |
+            This PR was automatically created by the release workflow.
+
+            - Source branch: `${{ github.event.release.target_commitish }}`
+            - Target branch: `develop`
+            - Release tag: `${{ github.event.release.tag_name }}`
+          github_token: ${{ secrets.GITHUB_TOKEN }}
